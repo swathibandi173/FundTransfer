@@ -1,0 +1,312 @@
+package com.Banking.Fundtransfer.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
+public class AccountDto implements Serializable {
+	private static final long serialVersionUID = 3994192272098493497L;
+
+	@NotEmpty(message = "provide user name for login")
+	@Size(min = 5, max = 50)
+	@Pattern(regexp = "[a-zA-Z0-9]+")
+	private String userName;
+
+	@NotEmpty(message = "provide first name")
+	@Size(min = 2, max = 25)
+	@Pattern(regexp = "[a-zA-Z]+")
+	private String firstName;
+
+	@NotEmpty(message = "provide last name ")
+	@Size(min = 2, max = 25)
+	@Pattern(regexp = "[a-zA-Z]+")
+	private String lastName;
+
+	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-mm-dd")
+	@NotEmpty(message = "Provide date of birth (yyyy-mm-dd) ")
+	@Pattern(regexp="^\\d{4}-\\d{2}-\\d{2}$",message = "Provide date of birth (yyyy-MM-dd) format" )
+	private Date DateOfBirth;
+
+	@NotEmpty(message = "provide gender")
+	private String gender;
+
+	@NotNull(message = "provide mobile no ,only digits")
+	@Pattern(regexp = "[0-9]{10}", message = "does means a valid mobile no")
+	private String mobileNumber;
+
+	@NotEmpty(message = "Provide email id")
+	@Email
+	private String emailId;
+
+	@NotEmpty(message = "provide pan number")
+	@Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]{1}", message = "Enter valid pan number")
+	private String panCard;
+
+	@NotNull(message = "provide aadhaar number,only digits ")
+	@Pattern(regexp = "[0-9]{12}", message = "Enter valid aadhaar number")
+	private String aadharCard;
+
+	@NotEmpty(message = "Provide Customer Address1")
+	@Size(min = 10, max = 100, message = "Address must be between 10 and 100 characters")
+	private String address1;
+
+	@NotEmpty(message = "Provide Customer Address2")
+	@Size(min = 10, max = 150, message = "Address must be between 10 and 150 characters")
+	private String address2;
+
+	@Column(name = "city")
+	@NotEmpty(message = "provide city")
+	@Pattern(regexp = "[a-zA-Z]+", message = "does means a valid city")
+	private String city;
+
+	@NotEmpty(message = "provide state")
+	@Pattern(regexp = "[a-zA-Z]+", message = "does means a valid state")
+	private String state;
+
+	@NotNull(message = "provide zipCode no ,only digits")
+	@Pattern(regexp = "[0-9]{6}", message = "does means a valid zipCode")
+	private String zipCode;
+
+	@NotEmpty(message = "provide account type")
+	@Size(min = 5, max = 10) // Value must contain at least 5 characters and a maximum of 10 characters
+	@Pattern(regexp = "[a-zA-Z]+", message = "does means a valid account type")
+	private String accountType;
+
+	@NotNull(message = "provide opening deposit ,only digits")
+	@Pattern(regexp = "([^.\\d]+|[\\d+\\.]{2,})", message = "does means a valid amount ")
+	private String openingDeposit;
+
+	@Size(min = 2, max = 25)
+	@Pattern(regexp = "[a-zA-Z]+", message = "does means a valid  Bank Name")
+	@NotEmpty(message = "provide Bank Name")
+	private String bankName;
+
+	@Size(min = 5, max = 25)
+	@Pattern(regexp = "[a-zA-Z]+", message = "does means a valid  Branch Name")
+	@NotEmpty(message = "provide Branch Name")
+	private String branchName;
+	
+	@NotEmpty(message="provide user name for login")
+	 @Size(min = 5, max = 15) // Value must contain at least 5 characters and a maximum of 15 characters
+	 @Pattern(regexp = "[a-zA-Z0-9]+",message = "does means a ifsCode")
+	 private String ifscCode;
+
+	public AccountDto() {
+		super();
+	}
+
+	public AccountDto(
+			@NotEmpty(message = "provide user name for login") @Size(min = 5, max = 50) @Pattern(regexp = "[a-zA-Z0-9]+") String userName,
+			@NotEmpty(message = "provide first name") @Size(min = 2, max = 25) @Pattern(regexp = "[a-zA-Z]+") String firstName,
+			@NotEmpty(message = "provide last name ") @Size(min = 2, max = 25) @Pattern(regexp = "[a-zA-Z]+") String lastName,
+			Date dateOfBirth, @NotEmpty(message = "provide gender") String gender,
+			@NotNull(message = "provide mobile no ,only digits") @Pattern(regexp = "[0-9]{10}", message = "does means a valid mobile no") String mobileNumber,
+			@NotEmpty(message = "Provide email id") @Email String emailId,
+			@NotEmpty(message = "provide pan number") @Pattern(regexp = "[A-Z]{5}[0-9]{4}[A-Z]{1}", message = "Enter valid pan number") String panCard,
+			@NotNull(message = "provide aadhaar number,only digits ") @Pattern(regexp = "[0-9]{12}", message = "Enter valid aadhaar number") String aadharCard,
+			@NotEmpty(message = "Provide Customer Address1") @Size(min = 10, max = 100, message = "Address must be between 10 and 100 characters") String address1,
+			@NotEmpty(message = "Provide Customer Address2") @Size(min = 10, max = 150, message = "Address must be between 10 and 150 characters") String address2,
+			@NotEmpty(message = "provide city") @Pattern(regexp = "[a-zA-Z]+", message = "does means a valid city") String city,
+			@NotEmpty(message = "provide state") @Pattern(regexp = "[a-zA-Z]+", message = "does means a valid state") String state,
+			@NotNull(message = "provide zipCode no ,only digits") @Pattern(regexp = "[0-9]{6}", message = "does means a valid zipCode") String zipCode,
+			@NotEmpty(message = "provide account type") @Size(min = 5, max = 10) @Pattern(regexp = "[a-zA-Z]+", message = "does means a valid account type") String accountType,
+			@NotNull(message = "provide opening deposit ,only digits") @Pattern(regexp = "([^.\\d]+|[\\d+\\.]{2,})", message = "does means a valid amount ") String openingDeposit,
+			@Size(min = 2, max = 25) @Pattern(regexp = "[a-zA-Z]+", message = "does means a valid  Bank Name") @NotEmpty(message = "provide Bank Name") String bankName,
+			@Size(min = 5, max = 25) @Pattern(regexp = "[a-zA-Z]+", message = "does means a valid  Branch Name") @NotEmpty(message = "provide Branch Name") String branchName,
+			@NotEmpty(message = "provide user name for login") @Size(min = 5, max = 15) @Pattern(regexp = "[a-zA-Z0-9]+", message = "does means a ifsCode") String ifscCode) {
+		super();
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		DateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+		this.emailId = emailId;
+		this.panCard = panCard;
+		this.aadharCard = aadharCard;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.accountType = accountType;
+		this.openingDeposit = openingDeposit;
+		this.bankName = bankName;
+		this.branchName = branchName;
+		this.ifscCode = ifscCode;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Date getDateOfBirth() {
+		return DateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		DateOfBirth = dateOfBirth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPanCard() {
+		return panCard;
+	}
+
+	public void setPanCard(String panCard) {
+		this.panCard = panCard;
+	}
+
+	public String getAadharCard() {
+		return aadharCard;
+	}
+
+	public void setAadharCard(String aadharCard) {
+		this.aadharCard = aadharCard;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public String getOpeningDeposit() {
+		return openingDeposit;
+	}
+
+	public void setOpeningDeposit(String openingDeposit) {
+		this.openingDeposit = openingDeposit;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	public String getIfscCode() {
+		return ifscCode;
+	}
+
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountDto [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", DateOfBirth=" + DateOfBirth + ", gender=" + gender + ", mobileNumber=" + mobileNumber
+				+ ", emailId=" + emailId + ", panCard=" + panCard + ", aadharCard=" + aadharCard + ", address1="
+				+ address1 + ", address2=" + address2 + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode
+				+ ", accountType=" + accountType + ", openingDeposit=" + openingDeposit + ", bankName=" + bankName
+				+ ", branchName=" + branchName + ", ifsCode=" + ifscCode + "]";
+	}
+	
+	
+
+}
