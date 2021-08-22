@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -24,6 +25,7 @@ import com.Banking.Fundtransfer.exception.TransferLimitException;
 import com.Banking.Fundtransfer.exception.UserNameAlreadyExistsException;
 import com.Banking.Fundtransfer.utils.ErrorMessage;
 
+@ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler 
 {
 	@Override
